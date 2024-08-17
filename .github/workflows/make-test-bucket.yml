@@ -1,0 +1,38 @@
+name: Terraform Deploy
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0  # Use the appropriate Terraform version
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2  # Change to your preferred region
+
+    - name: Initialize Terraform
+      run: terraform init
+      working-directory: terraform-aws-test
+
+    - name: Terraform Plan
+      run: terraform plan -out=plan.tfplan
+      working-directory: terraform-aws-test
+
+    - name: Terraform Apply
+      run: terraform apply plan.tfplan
+      working-directory: terraform-aws-test
+      env:
+        TF_VAR_environment: production  # Example of passing environment variables securely

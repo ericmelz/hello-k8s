@@ -18,6 +18,6 @@ jobs:
         role-to-assume: arn:aws:iam::638173936794:role/GitHubActionsTerraformRole
         mask-aws-account-id: 'no'
 
-   - name: list buckets
-     run: |
+    - name: list buckets
+      run: |
         aws s3 ls

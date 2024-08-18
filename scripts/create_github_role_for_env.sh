@@ -33,6 +33,13 @@ POLICY_DOCUMENT="{
                     \"secretsmanager:ListSecretVersionIds\"
                 ],
                 \"Resource\": \"*\"
+            },
+            {
+                \"Effect\": \"Allow\",
+                \"Action\": [
+                    \"s3:*\",
+                ],
+                \"Resource\": \"*\"
             }
 
         ]

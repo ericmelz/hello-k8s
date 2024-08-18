@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Verbose mode
-set -x
+set -e  # exit on failure
+set -x  # verbose
 
 AWS_PROFILE=mydev
 AWS_USERNAME=Dev
@@ -39,7 +40,25 @@ aws iam create-role \
                 },
                 \"Action\": \"sts:AssumeRole\",
                 \"Condition\": {}
+            },
+            {
+                \"Effect\": \"Allow\",
+                \"Principal\": {
+                    \"Federated\": \"arn:aws:iam::638173936794:oidc-provider/token.actions.githubusercontent.com\"
+                },
+                \"Action\": \"sts:AssumeRoleWithWebIdentity\",
+                \"Condition\": {
+                    \"StringEquals\": {
+                       \"token.actions.githubusercontent.com:aud\": \"sts.amazonaws.com\"
+                    },
+                    \"StringLike\": {
+                       \"token.actions.githubusercontent.com:sub\": [
+                           \"repo:ericmelz/hello-k8s:*\"
+                       ]
+                    }
+                }
             }
+
         ]
     }"
 

@@ -4,7 +4,8 @@ on:
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
-  buckets:
+  build-buckets:
+    name: buckets
     runs-on: ubuntu-latest
 
     steps:

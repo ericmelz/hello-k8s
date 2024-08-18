@@ -20,7 +20,7 @@ POLICY_DOCUMENT='{
             "Effect": "Allow",
             "Action": [
                 "s3:*",
-                "secrets:*"
+                "secretsmanager:*"
             ],
             "Resource": "*"
         }

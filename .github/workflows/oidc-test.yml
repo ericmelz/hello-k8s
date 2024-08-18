@@ -1,0 +1,23 @@
+name: Test OIDC
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  buckets:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: us-west-2
+        role-to-assume: arn:aws:iam::638173936794:role/GitHubActionsTerraformRole
+        mask-aws-account-id: 'no'
+
+   - name: list buckets
+     run: |
+        aws s3 ls

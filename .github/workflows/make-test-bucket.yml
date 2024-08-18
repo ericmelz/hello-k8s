@@ -48,4 +48,4 @@ jobs:
       run: terraform apply plan.tfplan
       working-directory: terraform-aws-test
       env:
-        TF_VAR_environment: ${{ inputs.env }}
+        TF_VAR_bucket_name_suffix: ${{ inputs.env }}

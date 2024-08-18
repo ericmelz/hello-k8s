@@ -1,0 +1,47 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+    inputs:
+      env:
+        description: "Select the environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+        - dev
+        - stage
+        - prod
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-region: us-west-2
+        role-to-assume: "arn:aws:iam::638173936794:role/${{ inputs.env }}K8sCrawlerGithubRole"
+
+    - name: Initialize Terraform
+      run: terraform init
+      working-directory: terraform-aws-test
+
+    - name: Terraform Destroy
+      run: terraform destroy -auto-approve
+      working-directory: terraform-aws-test
+      env:
+        TF_VAR_bucket_name_suffix: ${{ inputs.env }}

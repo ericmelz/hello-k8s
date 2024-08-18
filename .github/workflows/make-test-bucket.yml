@@ -38,16 +38,16 @@ jobs:
 
     - name: Initialize Terraform
       run: terraform init
-      working-directory: terraform-aws-test
+      working-directory: terraform/aws-test
 
     - name: Terraform Plan
       run: terraform plan -out=plan.tfplan
-      working-directory: terraform-aws-test
+      working-directory: terraform/aws-test
       env:
         TF_VAR_bucket_name_suffix: ${{ inputs.env }}
 
     - name: Terraform Apply
       run: terraform apply plan.tfplan
-      working-directory: terraform-aws-test
+      working-directory: terraform/aws-test
       env:
         TF_VAR_bucket_name_suffix: ${{ inputs.env }}

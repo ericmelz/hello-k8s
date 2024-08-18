@@ -36,14 +36,6 @@ aws iam create-role \
             {
                 \"Effect\": \"Allow\",
                 \"Principal\": {
-                    \"AWS\": \"arn:aws:iam::$ACCOUNT_ID:role/IdentityCenterUserRole\"
-                },
-                \"Action\": \"sts:AssumeRole\",
-                \"Condition\": {}
-            },
-            {
-                \"Effect\": \"Allow\",
-                \"Principal\": {
                     \"Federated\": \"arn:aws:iam::638173936794:oidc-provider/token.actions.githubusercontent.com\"
                 },
                 \"Action\": \"sts:AssumeRoleWithWebIdentity\",

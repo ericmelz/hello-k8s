@@ -37,7 +37,8 @@ POLICY_DOCUMENT="{
             {
                 \"Effect\": \"Allow\",
                 \"Action\": [
-                    \"s3:*\"
+                    \"s3:*\",
+                    \"dynamodb:*\"
                 ],
                 \"Resource\": \"*\"
             }

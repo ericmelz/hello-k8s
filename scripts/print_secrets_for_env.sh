@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env=$1
+
 components=("indexer" "manager" "spider" "parser")
 keynames=("dbpass" "apikey")
 

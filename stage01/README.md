@@ -58,3 +58,11 @@ You should see something like
 ```
 18ca1a2a56d5   hello-k8s:latest   "uvicorn greet:app -…"   5 seconds ago   Up 5 seconds   0.0.0.0:8000->8000/tcp     hello-k8s
 ```
+Execute
+```
+curl localhost:8000/greet
+```
+You should see
+```
+{"message":"Hello k8s from docker!"}
+```

@@ -66,3 +66,11 @@ You should see
 ```
 {"message":"Hello k8s from docker!"}
 ```
+
+## Stop the container
+```
+cid=$(docker ps|grep hello|cut -d' ' -f 1)
+echo $cid
+docker stop $cid
+```
+

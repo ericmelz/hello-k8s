@@ -28,5 +28,20 @@ You should see
 ```
 
 
-
 ## Run the application with environment variables
+In terminal, quit uvicorn by typing `Ctrl-C`.  Execute
+
+Terminal 1:
+```
+greeting='Yo K8s from a foreign environment!' uvicorn greet:app --reload
+```
+
+Terminal2:
+```
+curl localhost:8000/greet
+```
+
+You should see
+```
+{"message":"Yo K8s from a foreign environment!"}
+```

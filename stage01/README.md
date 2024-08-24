@@ -1,4 +1,4 @@
-# Stage 01 - Create an api
+# Stage 01 - Create a containerized api
 This example shows how to create an API that reads from an environment variable.
 
 ## Create a virtual environment

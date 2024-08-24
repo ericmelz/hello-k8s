@@ -45,3 +45,16 @@ You should see
 ```
 {"message":"Yo K8s from a foreign environment!"}
 ```
+
+## Build the docker image and run the docker container
+```
+docker build -t hello-k8s:latest .
+docker images|grep hello
+docker run -d -p 8000:8000 --name hello-k8s hello-k8s:latest
+docker ps|greep hello
+```
+
+You should see something like
+```
+18ca1a2a56d5   hello-k8s:latest   "uvicorn greet:app -…"   5 seconds ago   Up 5 seconds   0.0.0.0:8000->8000/tcp     hello-k8s
+```

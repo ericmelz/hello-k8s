@@ -1,4 +1,4 @@
-from src.api.models import Base, engine, SessionLocal, Message
+from api.models import Base, engine, SessionLocal, Message
 
 # Create tables if they don't exist
 Base.metadata.create_all(bind=engine)

@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from conf import settings
-from models import Message, get_db
+from api.conf import settings
+from api.models import Message, get_db
 
 print(f'{settings.greeting=}')
 print(f'{settings.database_url=}')

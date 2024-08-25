@@ -1,5 +1,5 @@
 from logging.config import fileConfig
-from src.api.models import Message
+from api.models import Message
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool

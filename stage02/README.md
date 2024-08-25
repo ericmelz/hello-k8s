@@ -28,10 +28,22 @@ show tables;
 ^D
 ```
 
-## Initialize alembic
+## Initialize database and fetch data
 Execute
 ```
+pod=$(kubectl get pod|grep hello|cut -d' ' -f 1)
+kubectl exec -it $pod -- /bin/bash
+
+alembic upgrade head
+python3 -m api.seed
+curl -s localhost:8000/data| python -m json.tool
 ```
 You should see
 ```
+{
+    "messages": [
+        "Hello, Kubernetes!",
+        "Welcome to FastAPI!"
+    ]
+}
 ```

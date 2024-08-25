@@ -19,5 +19,7 @@ spec:
         ports:
         - containerPort: 8000
         env:
-        - name: greeting
+        - name: DATABASE_URL
+          value: "mysql://hellouser:hellopass@mysql:3306/hello"
+        - name: GREETING
           value: "Hello k8s from Minikube!"

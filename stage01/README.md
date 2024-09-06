@@ -77,6 +77,7 @@ docker stop $cid
 ## Run on minikube
 ```
 minikube start
+minikube update-context
 eval $(minikube docker-env)
 docker build -t hello-k8s:latest .
 kubectl apply -f k8s/deployment.yaml

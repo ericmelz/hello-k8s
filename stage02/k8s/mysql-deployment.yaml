@@ -34,22 +34,22 @@ spec:
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "rootpass"
-        - name: MYSQL_DATABASE
-          value: "hello"
-        - name: MYSQL_USER
-          value: "hellouser"
-        - name: MYSQL_PASSWORD
-          value: "hellopass"
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+        - name: usermanagement-dbcreation-script
+          mountPath: /docker-entrypoint-initdb.d #https://hub.docker.com/_/mysql Refer Initializing a fresh instance                
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+      - name: usermanagement-dbcreation-script
+        configMap:
+          name: usermanagement-dbcreation-script
+
 
 ---
 apiVersion: v1

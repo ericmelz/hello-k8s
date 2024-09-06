@@ -12,6 +12,9 @@ pip install -r requirements.txt
 
 ## Deploy containerized MySql
 ```
+kubectl delete svc --all
+kubectl delete deploy --all
+kubectl apply -f k8s/mysql-configmap.yaml
 kubectl apply -f k8s/mysql-deployment.yaml
 kubectl get all
 ```
@@ -24,26 +27,32 @@ mysql -uhellouser -phellopass
 show databases;
 use hello;
 show tables;
+select * from Messages;
 ^D
 ^D
 ```
 
-## Initialize database and fetch data
+## Deploy API
+```
+docker build -t hello-k8s:latest .
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+```
+
+## fetch data
 Execute
 ```
 pod=$(kubectl get pod|grep hello|cut -d' ' -f 1)
 kubectl exec -it $pod -- /bin/bash
 
-alembic upgrade head
-python3 -m api.seed
 curl -s localhost:8000/data| python -m json.tool
 ```
 You should see
 ```
 {
     "messages": [
-        "Hello, Kubernetes!",
-        "Welcome to FastAPI!"
+        "Greetings from planet kube",
+        "The number you have dialed is not in service."
     ]
 }
 ```

@@ -79,6 +79,8 @@ docker stop $cid
 minikube start
 minikube update-context
 eval $(minikube docker-env)
+kubectl delete svc --all
+kubectl delete deploy --all
 docker build -t hello-k8s:latest .
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml

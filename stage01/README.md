@@ -51,7 +51,7 @@ You should see
 docker build -t hello-k8s:latest .
 docker images|grep hello
 docker run -d -p 8000:8000 --name hello-k8s hello-k8s:latest
-docker ps|greep hello
+docker ps|grep hello
 ```
 
 You should see something like

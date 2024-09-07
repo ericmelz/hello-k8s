@@ -1,6 +1,12 @@
 # Stage 01 - Create a containerized api
 This example shows how to create an API that reads from an environment variable.
 
+## Prerequisites
+* [Docker](https://docs.docker.com/desktop/install/mac-install/)
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+* [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download)
+* [Terraform](https://developer.hashicorp.com/terraform/install)
+
 ## Create a virtual environment
 ```
 mkdir -p ~/venvs/stage01

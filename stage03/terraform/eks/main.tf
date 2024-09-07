@@ -32,7 +32,30 @@ module "eks" {
   vpc_database_subnets = ["10.26.151.0/24", "10.26.152.0/24"]
 }
 
+output "eks_cluster_id" {
+  value = module.eks.cluster_id
+}
+
+output "aws_iam_openid_connect_provider_arn" {
+  value = module.eks.aws_iam_openid_connect_provider_arn
+}
+
+output "aws_iam_openid_connect_provider_extract_from_arn" {
+  value = module.eks.aws_iam_openid_connect_provider_extract_from_arn
+}
+
+output "cluster_certificate_authority_data" {
+  value = module.eks.cluster_certificate_authority_data
+}
+
+output "cluster_endpoint" {
+  value = module.eks.cluster_endpoint
+}
+
+/*
 module "eks-ebs" {
   source               = "../modules/eks-ebs"
   tfstate_bucket       = "dev-mcdevface-tfstate"
 }
+*/
+

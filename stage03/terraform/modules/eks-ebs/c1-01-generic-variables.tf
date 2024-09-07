@@ -11,3 +11,9 @@ variable "tfstate_bucket" {
   type = string
   default = "dev-mcdevface-tfstate"  
 }
+
+variable "cluster_name" {
+  description = "Name of the cluster"
+  type = string
+  default = "stage03"  
+}

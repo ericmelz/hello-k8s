@@ -2,5 +2,5 @@
 locals {
   common_tags = {
   }
-  eks_cluster_name = "${data.terraform_remote_state.eks.outputs.cluster_id}"  
+  eks_cluster_name = "${data.terraform_remote_state.eks.outputs.eks_cluster_id}"
 } 

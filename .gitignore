@@ -1,3 +1,4 @@
+stage03/terraform/eks/local-exec-output-files/creation-time-vpc-id.txt
 .idea
 terraform.tfstate*
 .terraform

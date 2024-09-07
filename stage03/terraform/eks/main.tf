@@ -31,3 +31,8 @@ module "eks" {
   vpc_private_subnets  = ["10.26.1.0/24", "10.26.2.0/24"]  
   vpc_database_subnets = ["10.26.151.0/24", "10.26.152.0/24"]
 }
+
+module "eks-ebs" {
+  source               = "../modules/eks-ebs"
+  tfstate_bucket       = "dev-mcdevface-tfstate"
+}

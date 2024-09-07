@@ -52,10 +52,8 @@ output "cluster_endpoint" {
   value = module.eks.cluster_endpoint
 }
 
-/*
 module "eks-ebs" {
   source               = "../modules/eks-ebs"
   tfstate_bucket       = "dev-mcdevface-tfstate"
 }
-*/
 

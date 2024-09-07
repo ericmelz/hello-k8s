@@ -19,4 +19,36 @@ Default output format [None]: json
 
 Confirm that there are new `[default]` sections in `~/.aws/config` and `~/.aws/credentials`.
 
+Execute
+```
+aws sts get-caller-identity
+```
+And observe the Arn to confirm that it matches the new user.
+
+## Create an S3 bucket and DynamoDB for the terraform state file.
+Edit `terraform/eks-tfstate`.  Change the organization name to your organization name.  This will be used
+to name the s3 bucket, so it should be something unique.
+
+Execute:
+```
+cd terraform
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```
+
+Execute
+```
+aws s3 ls|grep tfstate
+```
+and confirm that your bucket has been created.
+
+Execute
+```
+aws dynamodb list-tables --region us-west-2|grep eks-stage03-tfstate-lock
+```
+and confirm that your DynamoDB table has been created.
+
+
 

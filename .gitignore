@@ -1,6 +1,7 @@
 .idea
 terraform.tfstate*
 .terraform
+.terraform.lock.hcl
 *~
 # Byte-compiled / optimized / DLL files
 __pycache__/

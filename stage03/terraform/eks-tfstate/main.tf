@@ -1,5 +1,5 @@
 module "terraform_state" {
-  source            = "./modules/tfstate"  # Path to the module
+  source            = "../modules/tfstate"  # Path to the module
   organization_name = "dev-mcdevface"
   resource_type     = "eks"
   resource_name     = "stage03"

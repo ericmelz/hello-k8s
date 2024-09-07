@@ -31,7 +31,7 @@ to name the s3 bucket, so it should be something unique.
 
 Execute:
 ```
-cd terraform
+cd terraform/eks-tfstate
 terraform init
 terraform validate
 terraform plan

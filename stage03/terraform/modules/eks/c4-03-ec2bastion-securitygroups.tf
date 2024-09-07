@@ -2,7 +2,6 @@
 # Security Group for Public Bastion Host
 module "public_bastion_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  #version = "4.17.2"  
   version = "5.1.0"    
 
   name = "${local.name}-public-bastion-sg"

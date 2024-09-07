@@ -50,5 +50,25 @@ aws dynamodb list-tables --region us-west-2|grep eks-stage03-tfstate-lock
 ```
 and confirm that your DynamoDB table has been created.
 
+## Create an EKS cluster
+In the AWS console, navigate to EC2 > Key Pairs.  Click Create key pair and create a keypair
+named hellok8s.  Copy the generated key to ~/keys and execute
+```
+chmod 400 ~/keys/hellok8s.pem
+```
 
+Change to the terraform/eks directory:
+```
+cd ../eks
+```
+Edit the `bucket` argument in `main.tf` to match your bucket (replace `dev-mcdevface` with your org)
+Edit the `vpc_cidr_block` in `main.tf` to specify the desired CIDR block for the VPC that will be created.
+Edit the `vpc_public_subnets` and `vpc_private_subnets` in `main.tf` to specify the desired subnet CIDRs.
 
+Execute Terraform:
+```
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```

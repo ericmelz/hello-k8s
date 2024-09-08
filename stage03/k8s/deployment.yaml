@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: hello-k8s
-        image: hello-k8s:latest
-        imagePullPolicy: Never
+        image: 638173936794.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:

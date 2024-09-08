@@ -131,7 +131,6 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com
-docker login
 docker buildx build --platform linux/amd64 -t hello-k8s:latest --load .
 docker image inspect hello-k8s --format '{{.Os}}/{{.Architecture}}'
 # You should see amd64 (not arm64)

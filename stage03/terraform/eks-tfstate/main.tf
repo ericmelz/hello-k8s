@@ -22,7 +22,7 @@ variable "organization_name" {
 variable "resource_name" {
   type        = string
   description = "The unique name for the resource (e.g., stage03)."
-  default     = "stage-03"
+  default     = "stage03"
 }
 
 # S3 Bucket for Terraform state

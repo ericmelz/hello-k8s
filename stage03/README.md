@@ -99,3 +99,31 @@ Verify the ebs csi driver is installed:
 ```
 kubectl -n kube-system get ds | grep csi
 ```
+
+## Create an ECR repository
+```
+cd ../ecr
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```
+
+## Build and push the api docker image
+
+```
+cd ../..
+
+# Use buildx to support for multi-architecture docker images (e.g., building on an ARM-based Mac and deployoing to AWS x86 machines)
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker buildx create --use
+docker buildx build --platform linux/amd64 -t hello-k8s:latest .
+```
+
+## Deploy Manifests
+```
+cd ../..
+kubectl apply -f k8s
+```
+
+## Test the api

@@ -164,12 +164,12 @@ curl -s localhost:8000/data| python -m json.tool
 
 ## Tear down
 ```
-cd terraform/eks-ebs
+cd terraform/stage03-eks-ebs
 terraform destroy -auto-approve
 ```
 
 ```
-cd ../eks
+cd ../stage-03-eks
 terraform destroy -auto-approve
 ```
 

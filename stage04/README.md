@@ -28,11 +28,11 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com
-docker buildx build --platform linux/amd64,linux/arm64 -t hello-k8s:latest --load .
+docker buildx build --platform linux/amd64,linux/arm64 -t $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest --push .
+
 docker image inspect hello-k8s --format '{{.Os}}/{{.Architecture}}'
 # You should see amd64 and arm64
-docker tag hello-k8s:latest $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
-docker push $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
+#docker push $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest  # necessary?
 ```
 
 ## Deploy Manifests

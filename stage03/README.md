@@ -169,7 +169,7 @@ terraform destroy -auto-approve
 ```
 
 ```
-cd ../stage-03-eks
+cd ../stage03-eks
 terraform destroy -auto-approve
 ```
 

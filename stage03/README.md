@@ -26,7 +26,7 @@ aws sts get-caller-identity
 And observe the Arn to confirm that it matches the new user.
 
 ## Create an S3 bucket and DynamoDB for the terraform state file.
-Edit `terraform/eks-tfstate`.  Change the organization name to your organization name.  This will be used
+Edit `terraform/eks-tfstate/main.tf`.  Change the organization name to your organization name.  This will be used
 to name the s3 bucket, so it should be something unique.
 
 Execute:
@@ -46,9 +46,9 @@ and confirm that your bucket has been created.
 
 Execute
 ```
-aws dynamodb list-tables --region us-west-2|grep eks-stage03-tfstate-lock
+aws dynamodb list-tables --region us-west-2|grep tfstate-lock
 ```
-and confirm that your DynamoDB table has been created.
+and confirm that your DynamoDB tables have been created.
 
 ## Create an EKS cluster
 In the AWS console, navigate to EC2 > Key Pairs.  Click Create key pair and create a keypair
@@ -57,9 +57,9 @@ named hellok8s.  Copy the generated key to ~/keys and execute
 chmod 400 ~/keys/hellok8s.pem
 ```
 
-Change to the terraform/eks directory:
+Change to the terraform/stage03-eks directory:
 ```
-cd ../eks
+cd ../stage03-eks
 ```
 Edit the `bucket` and `tfstate_bucket` arguments in `main.tf` to match your bucket (replace `dev-mcdevface` with your org)
 Edit the `vpc_cidr_block` in `main.tf` to specify the desired CIDR block for the VPC that will be created.
@@ -79,4 +79,23 @@ aws eks --region us-west-2 update-kubeconfig --name stage03
 Execute kubectl
 ```
 kubectl get nodes
+```
+
+Change to the terraform/stage03-eks directory:
+```
+cd ../stage03-eks-ebs
+```
+Edit the `bucket` and `tfstate_bucket` arguments in `main.tf` to match your bucket (replace `dev-mcdevface` with your org)
+
+Execute Terraform:
+```
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```
+
+Verify the ebs csi driver is installed:
+```
+kubectl -n kube-system get ds | grep csi
 ```

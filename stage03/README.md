@@ -109,6 +109,18 @@ terraform plan
 terraform apply -auto-approve
 ```
 
+## (Optional) Clean docker containers, volumes and images
+```
+docker images
+docker stop $(docker ps -q)
+docker rm -f $(docker ps -a -q)
+docker volume prune
+docker rmi $(docker images -a -q)
+docker system prune -a -f
+docker images
+```
+
+
 ## Build and push the api docker image
 
 ```
@@ -117,11 +129,11 @@ cd ../..
 # Use buildx to support for multi-architecture docker images (e.g., building on an ARM-based Mac and deployoing to AWS x86 machines)
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use
-docker buildx build --platform linux/amd64 -t hello-k8s:latest .
-docker image inspect hello-k8s --format '{{.Os}}/{{.Architecture}}'
-# You should see amd64 (not arm64)
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com
+docker buildx build --platform linux/amd64 -t hello-k8s:latest --push .
+docker image inspect hello-k8s --format '{{.Os}}/{{.Architecture}}'
+# You should see amd64 (not arm64)
 docker tag hello-k8s:latest $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
 docker push $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
 ```

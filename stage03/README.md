@@ -155,7 +155,9 @@ kubectl apply -f k8s
 ```
 
 ## Test the api
+```
 pod=$(kubectl get pod|grep hello|cut -d' ' -f 1)
 kubectl exec -it $pod -- /bin/bash
 
 curl -s localhost:8000/data| python -m json.tool
+```

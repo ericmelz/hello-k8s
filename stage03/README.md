@@ -161,3 +161,15 @@ kubectl exec -it $pod -- /bin/bash
 
 curl -s localhost:8000/data| python -m json.tool
 ```
+
+## Tear down
+```
+cd terraform/eks-ebs
+terraform destroy -auto-approve
+```
+
+```
+cd ../eks
+terraform destroy -auto-approve
+```
+

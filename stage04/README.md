@@ -20,6 +20,7 @@ docker images
 ```
 
 ## Build and push the docker image
+```
 cd ../..
 
 # Use buildx to support for multi-architecture docker images (e.g., building on an ARM-based Mac and deployoing to AWS x86 machines)
@@ -33,7 +34,7 @@ docker image inspect hello-k8s --format '{{.Os}}/{{.Architecture}}'
 # You should see amd64 and arm64
 docker tag hello-k8s:latest $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
 docker push $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest
-
+```
 
 ## Deploy Manifests
 ```

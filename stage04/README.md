@@ -65,7 +65,6 @@ kubectl delete pv --all
 kubectl delete pvc --all
 
 helm install hellok8s ./helm
-kubectl apply -f minikube/k8s
 ```
 
 ## Test the api

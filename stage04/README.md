@@ -31,7 +31,7 @@ aws ecr get-login-password --region us-west-2 | docker login --username AWS --pa
 docker buildx build --platform linux/amd64,linux/arm64 -t $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest --push .
 ```
 
-## Deploy Manifests
+## Deploy Manifests to EKS
 ```
 cd ../..
 aws eks --region us-west-2 update-kubeconfig --name stage04
@@ -46,6 +46,25 @@ kubectl exec -it $pod -- /bin/bash
 
 curl -s localhost:8000/data| python -m json.tool
 ```
+
+## Deploy Manifests to minikube
+```
+minikube start
+kubectl delete svc --all
+kubectl delete deploy --all
+kubectl delete cm --all
+kubectl delete pv --all
+kubectl delete pvc --all
+kubectl apply -f k8s
+```
+
+## Test the api
+```
+pod=$(kubectl get pod|grep hello|cut -d' ' -f 1)
+kubectl exec -it $pod -- /bin/bash
+
+curl -s localhost:8000/data| python -m json.tool
+^D
 
 ## Tear down
 ```

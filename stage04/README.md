@@ -36,7 +36,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t $ACCOUNT_ID.dkr.ecr.us
 cd ../..
 aws eks --region us-west-2 update-kubeconfig --name stage04
 kubectl get nodes
-kubectl apply -f k8s
+helm install hellok8s ./helm --values values-eks.yaml
 ```
 
 ## Test the api
@@ -64,6 +64,7 @@ kubectl delete cm --all
 kubectl delete pv --all
 kubectl delete pvc --all
 
+helm install hellok8s ./helm
 kubectl apply -f minikube/k8s
 ```
 

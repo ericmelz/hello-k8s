@@ -1,0 +1,16 @@
+# templates/mysql-pv-claim.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - {{ .Values.mysql.storage.accessMode }}
+  {{- if eq .Values.environment "eks" }}
+  storageClassName: ebs-sc
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.mysql.storage.size }}

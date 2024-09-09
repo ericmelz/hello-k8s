@@ -63,6 +63,7 @@ kubectl delete deploy --all
 kubectl delete cm --all
 kubectl delete pv --all
 kubectl delete pvc --all
+kubectl delete sc --all
 
 helm install hellok8s ./helm
 ```

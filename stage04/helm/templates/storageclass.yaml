@@ -1,9 +1,16 @@
+{{- if .Values.storageClass.create }}
 # templates/storageclass.yaml
 {{- if eq .Values.environment "eks" }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    meta.helm.sh/release-name: hello-k8s
+    meta.helm.sh/release-name: hello-k8s
+    meta.helm.sh/release-namespace: default
   name: ebs-sc
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
+{{- end }}
 {{- end }}

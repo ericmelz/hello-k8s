@@ -22,8 +22,11 @@ spec:
         - containerPort: 8000
         env:
         - name: DATABASE_URL
-          value: "{{ .Values.env .Values.environment .DATABASE_URL }}"
+          value: "{{ .Values.env.DATABASE_URL }}"
         - name: GREETING
-          value: "{{ .Values.env .Values.environment .GREETING }}"
+          value: "{{ .Values.env.GREETING }}"
+      {{- if eq .Values.environment "minikube" }}
       imagePullSecrets:
-      - name: "{{ .Values.imagePullSecrets[0].name }}"
+      - name: "{{ .Values.imagePullSecrets.name }}"
+      {{- end }}
+

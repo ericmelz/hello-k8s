@@ -47,6 +47,14 @@ kubectl exec -it $pod -- /bin/bash
 curl -s localhost:8000/data| python -m json.tool
 ```
 
+## Add ECR login secret to minikube
+```
+export DOCKER_AUTH=$(echo -n "AWS:$(aws ecr get-login-password --region us-west-2)" | base64)
+kubectl create secret generic ecr-secret \
+--from-literal=.dockerconfigjson="{\"auths\":{\"$ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com\":{\"auth\":\"$DOCKER_AUTH\"}}}" \
+--type=kubernetes.io/dockerconfigjson
+```
+
 ## Deploy Manifests to minikube
 ```
 minikube start
@@ -55,11 +63,6 @@ kubectl delete deploy --all
 kubectl delete cm --all
 kubectl delete pv --all
 kubectl delete pvc --all
-
-export DOCKER_AUTH=$(echo -n "AWS:$(aws ecr get-login-password --region us-west-2)" | base64)
-kubectl create secret generic ecr-secret \
---from-literal=.dockerconfigjson="{\"auths\":{\"$ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com\":{\"auth\":\"$DOCKER_AUTH\"}}}" \
---type=kubernetes.io/dockerconfigjson
 
 kubectl apply -f minikube/k8s
 ```

@@ -61,9 +61,6 @@ kubectl create secret generic ecr-secret \
 --from-literal=.dockerconfigjson="{\"auths\":{\"$ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com\":{\"auth\":\"$DOCKER_AUTH\"}}}" \
 --type=kubernetes.io/dockerconfigjson
 
-#aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 638173936794.dkr.ecr.us-west-2.amazonaws.com
-#kubectl create secret generic ecr-secret --from-file=.dockerconfigjson=$HOME/.docker/config.json --type kubernetes.io/dockerconfigjson
-
 kubectl apply -f minikube/k8s
 ```
 

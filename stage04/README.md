@@ -71,6 +71,7 @@ kubectl exec -it $pod -- /bin/bash
 
 curl -s localhost:8000/data| python -m json.tool
 ^D
+```
 
 ## Tear down
 ```

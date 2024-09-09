@@ -23,3 +23,5 @@ spec:
           value: "mysql://hellouser:hellopass@mysql:3306/hello"
         - name: GREETING
           value: "Hello k8s from Minikube!"
+      imagePullSecrets:
+      - name: ecr-secret

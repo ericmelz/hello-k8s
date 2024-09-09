@@ -55,6 +55,9 @@ kubectl delete deploy --all
 kubectl delete cm --all
 kubectl delete pv --all
 kubectl delete pvc --all
+
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 638173936794.dkr.ecr.us-west-2.amazonaws.com
+kubectl create secret generic ecr-secret --from-file=.dockerconfigjson=$HOME/.docker/config.json --type kubernetes.io/dockerconfigjson
 kubectl apply -f k8s
 ```
 

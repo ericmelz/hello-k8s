@@ -36,7 +36,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t $ACCOUNT_ID.dkr.ecr.us
 cd ../..
 aws eks --region us-west-2 update-kubeconfig --name stage04
 kubectl get nodes
-helm install hellok8s ./helm --values values.yaml --values values-eks.yaml
+helm install hellok8s ./helm --values values-eks.yaml
 ```
 
 ## Test the api
@@ -58,6 +58,8 @@ kubectl create secret generic ecr-secret \
 ## Deploy Manifests to minikube
 ```
 minikube start
+kubectl config use-context minikube
+
 kubectl delete svc --all
 kubectl delete deploy --all
 kubectl delete cm --all

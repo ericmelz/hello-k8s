@@ -79,6 +79,32 @@ curl -s localhost:8000/data| python -m json.tool
 ^D
 ```
 
+## Interact with mysql from Python
+In Terminal 1:
+```
+kubectl port-forward svc/mysql 3306:3306
+```
+
+In Terminal 2, from stage04 root dir:
+```
+mkdir -p ~/venvs/stage04
+python3 -m venv ~/venvs/stage04
+source ~/venvs/stage04/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+cd src
+export DATABASE_URL=mysql+pymysql://hellouser:hellopass@localhost:3306/hello
+python3
+from api.models import SessionLocal, Message
+db = SessionLocal()
+[m.message for m in db.query(Message).all()]
+```
+
+You should see
+```
+['Greetings from planet kube', 'The number you have dialed is not in service.']
+```
+
 ## Tear down
 ```
 cd terraform/stage04-eks

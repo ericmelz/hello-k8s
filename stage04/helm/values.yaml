@@ -2,6 +2,12 @@
 
 environment: minikube # default value, can be overridden (e.g., 'eks')
 
+imagePullSecrets: 
+  name: ecr-secret
+  
+storageClass:
+  create: false
+
 mysql:
   storage:
     size: 1Gi
@@ -19,9 +25,4 @@ env:
   minikube:
     DATABASE_URL: "mysql://hellouser:hellopass@mysql:3306/hello"
     GREETING: "Hello k8s from Minikube!"
-  eks:
-    DATABASE_URL: "mysql://hellouser:hellopass@mysql:3306/hello"
-    GREETING: "Hello k8s from EKS!"
 
-imagePullSecrets: 
-  - name: ecr-secret

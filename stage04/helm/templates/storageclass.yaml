@@ -7,7 +7,6 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: Helm
     meta.helm.sh/release-name: hello-k8s
-    meta.helm.sh/release-name: hello-k8s
     meta.helm.sh/release-namespace: default
   name: ebs-sc
 provisioner: ebs.csi.aws.com

@@ -27,7 +27,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
     bucket = "dev-mcdevface-tfstate"
-    key    = "eks/stage05/terraform.tfstate"  # Replace with the key path to the state file in S3
+    key    = "eks/stage04/terraform.tfstate"  # Replace with the key path to the state file in S3
     region = "us-west-2"  # Replace with the region where your S3 bucket is located
   }
 }
@@ -114,7 +114,7 @@ resource "null_resource" "initialize_db" {
 
   provisioner "local-exec" {
     command = <<EOT
-      mysql -h ${aws_db_instance.mysql.endpoint} -u ${var.db_username} -p${var.db_password} -e "source ./init.sql"
+      mysql -h ${aws_db_instance.mysql.address} -u ${var.db_username} -p${var.db_password} -e "source ./init.sql"
     EOT
   }
 }

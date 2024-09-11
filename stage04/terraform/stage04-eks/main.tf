@@ -32,6 +32,10 @@ module "eks" {
   vpc_database_subnets = ["10.26.151.0/24", "10.26.152.0/24"]
 }
 
+output "vpc_id" {
+  value = module.eks.vpc_id
+}
+
 output "eks_cluster_id" {
   value = module.eks.cluster_id
 }

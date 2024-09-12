@@ -1,12 +1,8 @@
 # values-eks.yaml
 
-environment: eks
-
-storageClass:
-  create: false
-  name: "ebs-sc"
+environment: minikube2
 
 env:
-  eks:
+  minikube2:
     DATABASE_URL: ***REPLACE-ME***
     GREETING: "Hello k8s from EKS!"

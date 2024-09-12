@@ -1,6 +1,6 @@
 # values.yaml
 
-environment: minikube # default value, can be overridden (e.g., 'eks')
+environment: minikube1 # default value, can be overridden (e.g., 'eks2')
 
 imagePullSecrets: 
   name: ecr-secret

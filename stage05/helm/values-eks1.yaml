@@ -1,6 +1,6 @@
 # values-eks.yaml
 
-environment: eks
+environment: eks1
 
 storageClass:
   create: false

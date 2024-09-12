@@ -25,7 +25,7 @@ spec:
           value: {{ index .Values.env .Values.environment "DATABASE_URL" | quote }}
         - name: GREETING
           value: {{ index .Values.env .Values.environment "GREETING" | quote }}
-      {{- if eq .Values.environment "minikube" }}
+      {{- if regexMatch ".*minikube.*" .Values.environment }}
       imagePullSecrets:
       - name: "{{ .Values.imagePullSecrets.name }}"
       {{- end }}

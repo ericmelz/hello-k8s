@@ -26,7 +26,17 @@ Replace that line with the value in `terraform/stage05-rds/local-exec-output-fil
 ```
 kubectl config use-context minikube
 helm uninstall hellok8s
+kubectl delete secret ecr-secret
+aws ecr get-login-password --region us-west-2 | \
+kubectl create secret docker-registry ecr-secret \
+--docker-server=638173936794.dkr.ecr.us-west-2.amazonaws.com \
+--docker-username=AWS \
+--docker-password=$(aws ecr get-login-password --region us-west-2) \
+--docker-email=dev@emelz.dev 
 helm install hellok8s ./helm
+kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
+curl localhost:8000/greet
+curl localhost:8000/data
 ```
 
 

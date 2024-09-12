@@ -20,3 +20,18 @@ In `helm/values-eks2` and `helm/values-minikube2` you will see the line
     DATABASE_URL: ***REPLACE-ME***
 ```
 Replace that line with the value in `terraform/stage05-rds/local-exec-output-file/generated-values.yaml`
+
+## Test
+### minikube1
+```
+kubectl config use-context minikube
+helm uninstall hellok8s
+helm install hellok8s ./helm
+```
+
+
+### minikube2
+
+### eks1
+
+### eks2

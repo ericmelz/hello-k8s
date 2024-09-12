@@ -1,3 +1,4 @@
+{{- if regexMatch ".*1" .Values.environment }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -17,3 +18,4 @@ data:
     VALUES
       ('Greetings from planet kube'),
       ('The number you have dialed is not in service.');    
+{{- end }}

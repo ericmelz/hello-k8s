@@ -1,3 +1,4 @@
+{{- if regexMatch ".*1" .Values.environment }}
 # templates/mysql-service.yaml
 apiVersion: v1
 kind: Service
@@ -9,3 +10,4 @@ spec:
   selector:
     app: mysql
   clusterIP: None
+{{- end }}

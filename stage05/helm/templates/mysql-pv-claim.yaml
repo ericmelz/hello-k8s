@@ -1,3 +1,4 @@
+{{- if regexMatch ".*1" .Values.environment }}
 # templates/mysql-pv-claim.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -14,3 +15,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.mysql.storage.size }}
+{{- end }}
+      

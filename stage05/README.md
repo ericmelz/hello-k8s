@@ -15,7 +15,9 @@ terraform apply -auto-approve
 ```
 
 ## Configure helm
-In `helm/values-eks2` and `helm/values-minikube2` you will see the line
+Copy `/helm/values-eks2-template.yaml` to `/helm/values-eks2.yaml`,
+and `/home/values-minikube2-template.yaml` to `/home/values-minikube2.yaml`
+In `helm/values-eks2.yaml` and `helm/values-minikube2.yaml` you will see the line
 ```
     DATABASE_URL: ***REPLACE-ME***
 ```
@@ -50,6 +52,10 @@ You should see
 ```
 
 ### minikube2
+```
+helm uninstall
+helm install ./helm --values values-minikube2.yaml
+```
 
 
 ### eks1

@@ -8,5 +8,5 @@ storageClass:
 
 env:
   eks:
-    DATABASE_URL: ***REPLACE-ME***
+    DATABASE_URL: ** REPLACE-ME **
     GREETING: "Hello k8s from EKS!"

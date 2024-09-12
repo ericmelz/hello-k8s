@@ -26,6 +26,7 @@ Replace that line with the value in `terraform/stage05-rds/local-exec-output-fil
 ```
 kubectl config use-context minikube
 helm uninstall hellok8s
+kubectl delete pv --all
 kubectl delete secret ecr-secret
 aws ecr get-login-password --region us-west-2 | \
 kubectl create secret docker-registry ecr-secret \
@@ -35,12 +36,21 @@ kubectl create secret docker-registry ecr-secret \
 --docker-email=dev@emelz.dev 
 helm install hellok8s ./helm
 kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
-curl localhost:8000/greet
-curl localhost:8000/data
+curl -s localhost:8000/greet | python -mjson.tool
+curl -s localhost:8000/data | python -mjson.tool
+```
+You should see
+```
+{
+    "messages": [
+        "Greetings from planet kube",
+        "The number you have dialed is not in service."
+    ]
+}
 ```
 
-
 ### minikube2
+
 
 ### eks1
 

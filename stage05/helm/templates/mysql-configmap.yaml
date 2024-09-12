@@ -4,6 +4,10 @@ metadata:
   name: usermanagement-dbcreation-script
 data: 
   mysql_usermgmt.sql: |-
+    DROP DATABASE IF EXISTS hello;
+    CREATE DATABASE hello;
+    CREATE USER 'hellouser'@'%' IDENTIFIED BY 'hellopass';
+    GRANT ALL PRIVILEGES ON hello.* TO 'hellouser'@'%';
     USE hello;
     CREATE TABLE messages (
       id INT AUTO_INCREMENT PRIMARY KEY,

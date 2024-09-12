@@ -1,6 +1,5 @@
-{{- if .Values.storageClass.create }}
 # templates/storageclass.yaml
-{{- if eq .Values.environment "eks" }}
+{{- if regexMatch ".*eks.*" .Values.environment }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -11,5 +10,4 @@ metadata:
   name: ebs-sc
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
-{{- end }}
 {{- end }}

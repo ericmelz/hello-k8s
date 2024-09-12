@@ -82,3 +82,11 @@ curl -s localhost:8000/data | python -mjson.tool
 ```
 
 ### eks2
+```
+helm uninstall hellok8s
+helm install hellok8s ./helm --values ./helm/values-eks2.yaml
+kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
+curl -s localhost:8000/greet | python -mjson.tool
+curl -s localhost:8000/data | python -mjson.tool
+
+```

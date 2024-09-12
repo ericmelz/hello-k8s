@@ -2,10 +2,6 @@
 
 environment: eks1
 
-storageClass:
-  create: false
-  name: "ebs-sc"
-
 env:
   eks1:
     DATABASE_URL: "mysql://hellouser:hellopass@mysql:3306/hello"

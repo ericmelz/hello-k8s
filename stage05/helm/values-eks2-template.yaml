@@ -2,11 +2,7 @@
 
 environment: eks2
 
-storageClass:
-  create: false
-  name: "ebs-sc"
-
 env:
-  eks:
+  eks2:
     DATABASE_URL: ** REPLACE-ME **
     GREETING: "Hello k8s from EKS!"

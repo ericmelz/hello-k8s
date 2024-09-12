@@ -1,0 +1,21 @@
+# Chart.yaml
+apiVersion: v2
+name: hellok8s-deployment
+description: A Helm chart for deploying hello-k8s to both Minikube and EKS
+version: 0.1.0
+appVersion: "8.0"
+
+# Optional fields
+type: application
+keywords:
+  - mysql
+  - minikube
+  - eks
+  - kubernetes
+  - storage
+maintainers:
+  - name: Eric Melz
+    email: eric@emelz.com
+
+# Dependencies (optional, can include charts like mysql if needed)
+dependencies: []

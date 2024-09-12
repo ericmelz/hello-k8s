@@ -99,6 +99,15 @@ resource "aws_db_instance" "mysql" {
   }
 }
 
+resource "null_resource" "write_endpoint" {
+  provisioner "local-exec" {
+    command = "echo \"    DATABASE_URL: mysql://hellouser:hellopass@${aws_db_instance.mysql.endpoint}/hello\" >> generated-values.yaml"
+    working_dir = "local-exec-output-files/"
+    #on_failure = continue
+  }
+}
+
+
 # Wait for the RDS instance to be available
 resource "null_resource" "wait_for_db" {
   depends_on = [aws_db_instance.mysql]

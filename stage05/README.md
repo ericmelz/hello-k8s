@@ -13,3 +13,10 @@ terraform init
 terraform plan
 terraform apply -auto-approve
 ```
+
+## Configure helm
+In `helm/values-eks2` and `helm/values-minikube2` you will see the line
+```
+    DATABASE_URL: ***REPLACE-ME***
+```
+Replace that line with the value in `terraform/stage05-rds/local-exec-output-file/generated-values.yaml`

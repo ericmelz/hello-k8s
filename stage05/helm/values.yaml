@@ -1,0 +1,28 @@
+# values.yaml
+
+environment: minikube # default value, can be overridden (e.g., 'eks')
+
+imagePullSecrets: 
+  name: ecr-secret
+  
+storageClass:
+  create: false
+
+mysql:
+  storage:
+    size: 1Gi
+    accessMode: ReadWriteOnce
+  rootPassword: rootpass
+
+configMapName: usermanagement-dbcreation-script
+
+image:
+  repository: 638173936794.dkr.ecr.us-west-2.amazonaws.com/hello-k8s
+  tag: latest
+  pullPolicy: Always
+
+env:
+  minikube:
+    DATABASE_URL: "mysql://hellouser:hellopass@mysql:3306/hello"
+    GREETING: "Hello k8s from Minikube!"
+

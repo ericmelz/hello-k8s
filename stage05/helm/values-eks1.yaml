@@ -7,6 +7,6 @@ storageClass:
   name: "ebs-sc"
 
 env:
-  eks:
+  eks1:
     DATABASE_URL: "mysql://hellouser:hellopass@mysql:3306/hello"
     GREETING: "Hello k8s from EKS!"

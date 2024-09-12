@@ -54,10 +54,31 @@ You should see
 ### minikube2
 ```
 helm uninstall
-helm install ./helm --values values-minikube2.yaml
+helm install ./helm --values ./helm/values-minikube2.yaml
+kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
+curl -s localhost:8000/greet | python -mjson.tool
+curl -s localhost:8000/data | python -mjson.tool
 ```
 
+You should see
+```
+{
+    "messages": [
+        "Greetings from planet kubelet, coming from sunny RDS",
+        "The number you have dialed is now in service."
+    ]
+}
+```
 
 ### eks1
+```
+kubectl config use-context <your Eks cluster>, e.g.
+kubectl config use-context arn:aws:eks:us-west-2:638173936794:cluster/stage04
+helm install hellok8s ./helm --values ./helm/values-eks1.yaml
+kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
+curl -s localhost:8000/greet | python -mjson.tool
+curl -s localhost:8000/data | python -mjson.tool
+
+```
 
 ### eks2

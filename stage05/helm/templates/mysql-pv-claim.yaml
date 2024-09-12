@@ -9,7 +9,7 @@ metadata:
 spec:
   accessModes:
     - {{ .Values.mysql.storage.accessMode }}
-  {{- if eq .Values.environment "eks" }}
+  {{- if regexMatch ".*eks.*" .Values.environment }}
   storageClassName: ebs-sc
   {{- end }}
   resources:

@@ -9,3 +9,12 @@ terraform validate
 terraform plan
 terraform apply -auto-approve
 ```
+
+## Create a secret
+```
+cd ../stage06-create-secret
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```

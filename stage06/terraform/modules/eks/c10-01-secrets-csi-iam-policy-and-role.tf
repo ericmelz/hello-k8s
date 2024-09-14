@@ -36,3 +36,8 @@ data "aws_iam_policy_document" "csi_secrets_manager_assume_role_policy" {
     }
   }
 }
+
+resource "aws_iam_role_policy_attachment" "csi_secrets_manager_role_policy_attachment" {
+  role       = aws_iam_role.csi_secrets_manager_role.name
+  policy_arn = aws_iam_policy.csi_secrets_manager_policy.arn
+}

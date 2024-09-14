@@ -14,6 +14,9 @@ spec:
       labels:
         app: hello-k8s
     spec:
+      {{- if regexMatch ".*eks.*" .Values.environment }}
+      serviceAccountName: secrets-store-sa
+      {{- end }}
       containers:
       - name: hello-k8s
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -25,8 +28,23 @@ spec:
           value: {{ index .Values.env .Values.environment "DATABASE_URL" | quote }}
         - name: GREETING
           value: {{ index .Values.env .Values.environment "GREETING" | quote }}
+        {{- if regexMatch ".*eks.*" .Values.environment }}
+        volumeMounts:
+          - name: secrets-store
+            mountPath: "/mnt/secrets-store"
+            readOnly: true
+        {{- end }}
       {{- if regexMatch ".*minikube.*" .Values.environment }}
       imagePullSecrets:
       - name: "{{ .Values.imagePullSecrets.name }}"
+      {{- end }}
+      {{- if regexMatch ".*eks.*" .Values.environment }}
+      volumes:
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "aws-secrets"
       {{- end }}
 

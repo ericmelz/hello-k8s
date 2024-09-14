@@ -20,9 +20,15 @@ terraform apply -auto-approve
 ```
 
 ## Deploy the helm chart
-Copy `helm/values-eks3-template.yaml` to `helm/values-eks3.yaml`.  Replace the database url with the appropriate value.
-
+Copy `helm/values-eks3-template.yaml` to `helm/values-eks3.yaml`.  Replace the database url,
+aws region, and account_id with the correct values.
 ```
 cd ../..
 helm install hellok8s ./helm --values ./helm/values-eks3.yaml
+```
+
+## See the secret
+```
+kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
+cat /mnt/secrets-store/arn\:aws\:secretsmanager\:us-west-2\:638173936794\:secret\:my-secret-0nKwa6
 ```

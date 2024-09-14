@@ -1,8 +1,12 @@
 # values-eks.yaml
 
-environment: eks2
+environment: eks3
+
+aws_account_id: ** REPLACE-ME **
+aws_region:  us-west-2
+
 
 env:
-  eks2:
+  eks3:
     DATABASE_URL: ** REPLACE-ME **
     GREETING: "Hello k8s from EKS!"

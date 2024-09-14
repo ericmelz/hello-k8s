@@ -1,0 +1,32 @@
+# templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-k8s
+  template:
+    metadata:
+      labels:
+        app: hello-k8s
+    spec:
+      containers:
+      - name: hello-k8s
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: {{ index .Values.env .Values.environment "DATABASE_URL" | quote }}
+        - name: GREETING
+          value: {{ index .Values.env .Values.environment "GREETING" | quote }}
+      {{- if regexMatch ".*minikube.*" .Values.environment }}
+      imagePullSecrets:
+      - name: "{{ .Values.imagePullSecrets.name }}"
+      {{- end }}
+

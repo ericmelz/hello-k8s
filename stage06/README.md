@@ -18,3 +18,11 @@ terraform validate
 terraform plan
 terraform apply -auto-approve
 ```
+
+## Deploy the helm chart
+Copy `helm/values-eks3-template.yaml` to `helm/values-eks3.yaml`.  Replace the database url with the appropriate value.
+
+```
+cd ../..
+helm install hellok8s ./helm --values ./helm/values-eks3.yaml
+```

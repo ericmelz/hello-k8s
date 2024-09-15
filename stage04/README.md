@@ -108,7 +108,7 @@ You should see
 
 ## Configure Pycharm
 If you wish to run and debug the API in PyCharm, set up the following run configuration:
-~[Run Configuration](images/fastapi.png)
+![Run Configuration](images/fastapi.png)
 
 
 ## Tear down

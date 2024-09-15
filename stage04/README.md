@@ -49,6 +49,7 @@ curl -s localhost:8000/data| python -m json.tool
 
 ## Add ECR login secret to minikube
 ```
+kubectl delete secret ecr-secret
 export DOCKER_AUTH=$(echo -n "AWS:$(aws ecr get-login-password --region us-west-2)" | base64)
 kubectl create secret generic ecr-secret \
 --from-literal=.dockerconfigjson="{\"auths\":{\"$ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com\":{\"auth\":\"$DOCKER_AUTH\"}}}" \
@@ -104,6 +105,11 @@ You should see
 ```
 ['Greetings from planet kube', 'The number you have dialed is not in service.']
 ```
+
+## Configure Pycharm
+If you wish to run and debug the API in PyCharm, set up the following run configuration:
+~[Run Configuration](images/fastapi.png)
+
 
 ## Tear down
 ```

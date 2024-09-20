@@ -9,10 +9,7 @@ from pathlib import Path
 class Settings(BaseSettings):
     greeting: str = "Hello, K8s, from local!"
     database_url: str
-    secret1: str
-    secret2: str
-    secret3: str
-    secret4: str
+    db_password: str
 
     class Config:
         env_file = ".env"

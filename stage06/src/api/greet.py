@@ -13,11 +13,7 @@ def greet():
 
 @app.get("/secrets")
 def greet():
-    return {"secrets1": settings.secrets1,
-            "secrets2": settings.secrets2,
-            "secrets3": settings.secrets3,
-            "secrets4": settings.secrets4
-            }
+    return {"db_password": settings.db_password}
 
 
 @app.get("/data")

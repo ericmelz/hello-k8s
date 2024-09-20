@@ -19,6 +19,10 @@ terraform plan
 terraform apply -auto-approve
 ```
 
+## Build and push the docker image
+
+
+
 ## Deploy the helm chart
 Copy `helm/values-eks3-template.yaml` to `helm/values-eks3.yaml`.  Replace the database url,
 aws region, and account_id with the correct values.
@@ -32,4 +36,6 @@ helm install hellok8s ./helm --values ./helm/values-eks3.yaml
 kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
 cat /mnt/secrets-store/*
 echo $DB_PASSWORD
+curl localhost:8000/greet
+curl localhost:8000/secrets
 ```

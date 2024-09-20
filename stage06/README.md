@@ -20,6 +20,12 @@ terraform apply -auto-approve
 ```
 
 ## Build and push the docker image
+```
+cd ../..
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com
+docker buildx build --platform linux/amd64,linux/arm64 -t $ACCOUNT_ID.dkr.ecr.us-west-2.amazonaws.com/hello-k8s:latest --push .
+```
 
 
 

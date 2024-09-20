@@ -1,0 +1,19 @@
+{{- if regexMatch ".*1" .Values.environment }}
+# templates/mysql-pv-claim.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - {{ .Values.mysql.storage.accessMode }}
+  {{- if regexMatch ".*eks.*" .Values.environment }}
+  storageClassName: ebs-sc
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.mysql.storage.size }}
+{{- end }}
+      

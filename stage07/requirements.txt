@@ -1,0 +1,9 @@
+fastapi==0.104.1
+uvicorn[standard]==0.22.0
+pydantic==2.8.2
+pydantic-settings==2.1.0
+sqlalchemy==2.0.20
+mysqlclient==2.2.4
+alembic==1.11.1
+PyMySQL==1.1.1
+cryptography==36.0.0

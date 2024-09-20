@@ -24,4 +24,10 @@ resource "helm_release" "aws_secretsmanager_csi_driver_provider" {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.csi_secrets_manager_role.arn
   }
+
+  set {
+    name  = "syncSecret.enabled"
+    value = true
+  }
+  
 }

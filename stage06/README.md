@@ -30,5 +30,6 @@ helm install hellok8s ./helm --values ./helm/values-eks3.yaml
 ## See the secret
 ```
 kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
-cat /mnt/secrets-store/arn\:aws\:secretsmanager\:us-west-2\:638173936794\:secret\:my-secret-0nKwa6
+cat /mnt/secrets-store/*
+echo $DB_PASSWORD
 ```

@@ -29,6 +29,16 @@ spec:
         - name: GREETING
           value: {{ index .Values.env .Values.environment "GREETING" | quote }}
         {{- if regexMatch ".*eks.*" .Values.environment }}
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: hello-secret
+              key: hello-username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hello-secret
+              key: hello-password
         volumeMounts:
           - name: secrets-store
             mountPath: "/mnt/secrets-store"

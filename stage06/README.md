@@ -42,6 +42,15 @@ helm install hellok8s ./helm --values ./helm/values-eks3.yaml
 kubectl exec -it $(kubectl get po|grep hello|cut -d' ' -f1) -- /bin/bash
 cat /mnt/secrets-store/*
 echo $DB_PASSWORD
-curl localhost:8000/greet
-curl localhost:8000/secrets
+```
+
+Execute the secrets endpoint
+```
+curl -s localhost:8000/secrets|python -mjson.tool
+```
+You should see
+```
+{
+    "db_password": "supersecret"
+}
 ```

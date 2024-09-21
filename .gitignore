@@ -1,3 +1,4 @@
+.DS_Store
 values-eks3.yaml
 values-eks2.yaml
 values-minikube2.yaml

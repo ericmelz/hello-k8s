@@ -1,8 +1,17 @@
 # Stage07 - Set up Internet service
 In this stage, we set up a service accessible by the internet
 
+## Install the alb controller
+```
+cd terraform/stage07-eks
+terraform init
+terraform validate
+terraform plan
+terraform apply -auto-approve
+```
+
 ##
-Update the hellok8s service to use an nlb load balancer:
+Update the hellok8s service to use an alb load balancer:
 ```
 helm uninstall hellok8s
 helm install hellok8s ./helm --values ./helm/values-eks3.yaml

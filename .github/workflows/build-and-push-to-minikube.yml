@@ -44,4 +44,4 @@ jobs:
 
     - name: Deploy to Minikube
       run: |
-        kubectl apply -f k8s-deployment.yaml
+        kubectl apply -f stage01/k8s/deployment.yaml

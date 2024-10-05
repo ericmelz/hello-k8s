@@ -1,0 +1,41 @@
+name: Build & Push to Minikube
+
+on: 
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build Docker image
+      run: |
+        docker build -t hello-k8s:latest ./stage01 -f ./stage01/Dockerfile
+
+    - name: Save the Docker image as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: hello-k8s
+        path: |
+          ./hello-k8s:latest.tar
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Load Docker image
+      run: docker load -i ./hello-k8s:latest.tar
+
+    - name: Deploy to Minikube
+      run: |
+        kubectl apply -f k8s-deployment.yaml

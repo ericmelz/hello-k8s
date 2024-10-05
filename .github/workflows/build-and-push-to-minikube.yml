@@ -19,7 +19,7 @@ jobs:
         docker build -t hello-k8s:latest ./stage01 -f ./stage01/Dockerfile
 
     - name: Save the Docker image as artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: hello-k8s
         path: |

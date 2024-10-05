@@ -1,0 +1,14 @@
+name: Print Message
+
+on: 
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  print:
+    runs-on: self-hosted  # This will run on your local self-hosted runner
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Print a message
+      run: echo "Hello from your local self-hosted runner!"

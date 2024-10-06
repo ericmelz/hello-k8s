@@ -16,7 +16,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t hello-k8s:latest ./stage01 -f ./stage01/Dockerfile
+        docker buildx create --use
+        docker buildx build --platform linux/amd64,linux/arm64 \
+        -t hello-k8s:latest ./stage01 -f ./stage01/Dockerfile --load
         docker save hello-k8s:latest > hello-k8s-latest.tar
 
     - name: Save the Docker image as artifact

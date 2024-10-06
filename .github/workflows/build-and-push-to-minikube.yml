@@ -39,15 +39,12 @@ jobs:
       with:
         name: hello-k8s
 
-    - name: Set up Minikube Docker environment
+    - name: Load Docker image into minikube
       run: |
         eval $(minikube docker-env)  # Ensures docker commands use Minikube's Docker
         echo "After minikube eval: $DOCKER_HOST"
-
-    - name: Load Docker image
-      run: |
-        echo "Before load docker image: $DOCKER_HOST"
         docker load -i hello-k8s-latest.tar
+        echo "After load: $DOCKER_HOST"
 
     - name: Deploy to Minikube
       run: |

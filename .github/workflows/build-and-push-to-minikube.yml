@@ -39,6 +39,9 @@ jobs:
       with:
         name: hello-k8s
 
+    - name: Set up Minikube Docker environment
+      run: eval $(minikube docker-env)  # Ensures docker commands use Minikube's Docker
+
     - name: Load Docker image
       run: docker load -i hello-k8s-latest.tar
 
